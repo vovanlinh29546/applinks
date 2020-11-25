@@ -92,31 +92,14 @@ export default class Security extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-
-                <View style={styles.btninsert}>
-                    <View style={styles.viewback}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.props.navigation.goBack()
-                            }}  >
-                            <Image source={
-                                back}
-
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.viewtenroom}>
+            <View style={styles.container}> 
+             <ScrollView>
                         <Image source={
                             iconliving
                         } style={styles.pickimagerom}></Image>
-                        <Text style={styles.textco}>Bảo vệ</Text>
-                    </View>
+           
 
-
-                </View>
-
-                <ScrollView>
+               
                 <View>
                 {this.state.showbutton ? <ActivityIndicator size="large" color="ff00000" />
 
@@ -296,10 +279,10 @@ const styles = StyleSheet.create({
     },
     pickimagerom: {
         borderWidth: 0.5,
-        marginHorizontal: 20,
+        
         justifyContent: 'center',
         backgroundColor: 'white',
-        width: 150,
+        width: width,
         height: 120,
     },
 

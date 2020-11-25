@@ -20,6 +20,8 @@ import imgaaddpic from '../images/imgaaddpic.jpg';
 import Icon from '../node_modules/react-native-vector-icons/Ionicons';
 import { ProgressDialog } from 'react-native-simple-dialogs';
 import iconliving from '../images/phongkhach.jpg';
+import icondoamkk from '../images/humidity.png';
+import iconnhietdo from '../images/hot.png';
 export default class DevicesMan extends Component {
     constructor(props) {
         super(props)
@@ -139,8 +141,9 @@ export default class DevicesMan extends Component {
 
     render() {
         return (
+            <ScrollView>
             <View style={styles.container}>
-                <Modal
+                {/* <Modal
                     animationType="slide"
                     transparent={false}
                     isVisible={this.state.modalVisible}
@@ -148,29 +151,17 @@ export default class DevicesMan extends Component {
                     onBackdropPress={this._hideDialog}>
 
                     <InsertProduct />
-                </Modal>
-                <View style={styles.btninsert}>
-                    <View style={styles.viewback}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.props.navigation.goBack()
-                            }}  >
-               <Icon name={'ios-chevron-back'} size={50} color={'gray'}
-                />
-                        </TouchableOpacity>
-                        
+                </Modal> */}
+               
 
-                    </View>
-                    <View style={styles.viewtenroom}>
                         <Image source={
                             iconliving
                         } style={styles.pickimagerom}></Image>
-                        <Text style={styles.textco}>Phòng khách</Text>
-                    </View>
+                  
 
 
-                </View>
-                <View style={styles.postTemp}>
+                
+                {/* <View style={styles.postTemp}>
                     <TouchableOpacity
 
                         onPress={() => {
@@ -180,22 +171,47 @@ export default class DevicesMan extends Component {
                     </TouchableOpacity>
 
 
-                </View>
+                </View> */}
 
                 {this.state.shownhietdo && this.state.showdoam ?
                     <ActivityIndicator size="large" color="ff00000" /> :
-                    <View style={styles.postTemp}>
-                        <View style={styles.postinfoTemp}>
-                        <Text>Nhiệt độ: {this.state.nhietdo}&deg;C </Text>
-                        </View>
-                        <View style={styles.postinfoTemp}>
-                        <Text>Độ ẩm: {this.state.doam}%</Text>
-                        </View>
+                    <View style={{
+                        flexDirection: 'row',
+                        backgroundColor: '#f1f1f1',
+                        width: null,
+                         marginVertical: width * 8 / 187.5,
+                         padding: width * 3.6 / 187.5,
+                         borderRadius: width * 5 / 187.5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20
+                            }}>
+                                <Image source={iconnhietdo} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                    //color: 'white'
+                                }}>{this.state.nhietdo} &deg;C </Text>
+                            </View>
+                            <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20
+                            }}>
+                                <Image source={icondoamkk} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                  //  color: 'white'
+                                }}>{this.state.doam} % </Text>
+                            </View>
                     </View>
                 }
 
 
-                <ScrollView>
+                
                 <View>
                 {this.state.showbutton ? <ActivityIndicator size="large" color="ff00000" />
 
@@ -233,7 +249,7 @@ export default class DevicesMan extends Component {
                     />
                    
                 }</View>
-</ScrollView>
+
 
                 <ProgressDialog
                     title="Loading"
@@ -244,6 +260,7 @@ export default class DevicesMan extends Component {
                     visible={this.state.showProgress}
                 />
             </View>
+            </ScrollView>
         )
 
     }
@@ -385,14 +402,20 @@ const styles = StyleSheet.create({
     },
     pickimagerom: {
         borderWidth: 0.5,
-        marginHorizontal: 20,
+        
         justifyContent: 'center',
         backgroundColor: 'white',
-        width: 150,
+        width: width,
         height: 120,
 
     },
+    showicon: {
+        borderWidth: 0.4,
 
+        width: 30,
+        height: 30,
+
+    },
 });
 export class InsertProduct extends React.Component {
     constructor(props) {

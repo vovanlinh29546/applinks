@@ -6,7 +6,7 @@ export default class Splash extends Component {
     constructor(props) {
         super(props)
         setTimeout(() => {
-            this.props.navigation.navigate('Login')
+            this.props.navigation.navigate('Đăng nhập')
         }, 3000);
 
     }

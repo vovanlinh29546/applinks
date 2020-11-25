@@ -12,6 +12,7 @@ import icondoamkk from '../images/humidity.png';
 import iconnhietdo from '../images/hot.png';
 import iconkhigas from '../images/gas.png';
 import icondoamdat from '../images/soil.png';
+import iconthoitiet from '../images/thoitiet.jpg'
 import { color } from 'react-native-reanimated';
 export default class Splash extends Component {
     constructor(props) {
@@ -193,44 +194,42 @@ export default class Splash extends Component {
     render() {
         const DATA = [
             {
-                id: 'DevicesMan',
+                id: 'Phòng khách',
                 name: 'Phòng khách',
                 icon: iconliving,
 
             },
             {
-                id: 'Bedroom',
+                id: 'Phòng ngủ',
                 name: 'Phòng ngủ',
                 icon: iconslep,
             },
             {
-                id: 'Kitchenroom',
+                id: 'Phòng bếp',
                 name: 'Phòng bếp',
                 icon: iconkitchen,
             },
 
             {
-                id: 'Garden',
+                id: 'Sân vườn',
                 name: 'Sân vườn',
                 icon: icongarden,
             },
 
             {
-                id: 'Security',
+                id: 'Bảo vệ',
                 name: 'Bảo vệ',
                 icon: iconsecu,
+            },
+            {
+                id: 'Thời tiết',
+                name: 'Thời tiết',
+                icon: iconthoitiet,
             },
         ];
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.textmyhome}
-                    >
 
-                        My Home
-                        </Text>
-
-                </View>
                 <SafeAreaView style={styles.postTemp}>
                     <FlatList
                         style={{

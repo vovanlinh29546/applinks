@@ -4,22 +4,19 @@ import {
     Text,
     StyleSheet,
     FlatList,
-    KeyboardAvoidingView, ScrollView,
-    TextInput,
-    Button, Image,
-    TouchableOpacity, Alert, SafeAreaView, ActivityIndicator
+     ScrollView,
+     Image,
+     ActivityIndicator
 } from 'react-native'
 import { Switch } from 'react-native-switch';
 import { Dimensions, } from 'react-native';
 import firebase from '../firebase/firebase.js';
-import ImagePicker from 'react-native-image-picker';
-//import Constants from 'expo-constants';
-import { request, PERMISSIONS } from 'react-native-permissions';
-import Modal from 'react-native-modal'
-import imgaaddpic from '../images/imgaaddpic.jpg';
-import back from '../images/back.png';
+
 import { ProgressDialog } from 'react-native-simple-dialogs';
 import iconliving from '../images/phongbep.png';
+import icondoamkk from '../images/humidity.png';
+import iconnhietdo from '../images/hot.png';
+import iconkhigas from '../images/gas.png';
 export default class Kitchenroom extends Component {
     constructor(props) {
         super(props)
@@ -132,39 +129,66 @@ export default class Kitchenroom extends Component {
 
     render() {
         return (
+            <ScrollView>
             <View style={styles.container}>
 
-                <View style={styles.btninsert}>
-                    <View style={styles.viewback}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.props.navigation.goBack()
-                            }}  >
-                            <Image source={
-                                back}
-
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.viewtenroom}>
+                
+                   
                         <Image source={
                             iconliving
                         } style={styles.pickimagerom}></Image>
-                        <Text style={styles.textco}>Phòng bếp</Text>
-                    </View>
+               
 
 
-                </View>
                 {this.state.shownhietdo && this.state.showdoam && this.state.showgas ?
                     <ActivityIndicator size="large" color="ff00000" /> :
-                    <View style={styles.postTemp}>
 
-                        <Text>Nhiệt độ: {this.state.nhietdo}&deg;C </Text>
-                        <Text>Độ ẩm: {this.state.doam}%</Text>
-                        <Text>Gas: {this.state.gas}</Text>
+                    <View style={{
+                        flexDirection: 'row',
+                        backgroundColor: '#f1f1f1',
+                        width: null,
+                         marginVertical: width * 8 / 187.5,
+                         padding: width * 3.6 / 187.5,
+                         borderRadius: width * 5 / 187.5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20
+                            }}>
+                                <Image source={iconnhietdo} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                    //color: 'white'
+                                }}>{this.state.nhietdo} &deg;C </Text>
+                            </View>
+                            <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20
+                            }}>
+                                <Image source={icondoamkk} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                  //  color: 'white'
+                                }}>{this.state.doam} % </Text>
+                            </View>
+                            <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20
+                            }}>
+                                <Image source={iconkhigas} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                  //  color: 'white'
+                                }}>{this.state.gas} % </Text>
+                            </View>
                     </View>
                 }
-                <ScrollView>
+                
                     <View>
                         {this.state.showbutton ? <ActivityIndicator size="large" color="ff00000" />
 
@@ -200,7 +224,7 @@ export default class Kitchenroom extends Component {
                                 keyExtractor={item => item.id}
                             />
                         }</View>
-                </ScrollView>
+                
                 <ProgressDialog
                     title="Loading"
                     activityIndicatorColor="blue"
@@ -210,6 +234,7 @@ export default class Kitchenroom extends Component {
                     visible={this.state.showProgress}
                 />
             </View>
+            </ScrollView>
         )
 
     }
@@ -344,14 +369,20 @@ const styles = StyleSheet.create({
     },
     pickimagerom: {
         borderWidth: 0.5,
-        marginHorizontal: 20,
+        
         justifyContent: 'center',
         backgroundColor: 'white',
-        width: 150,
+        width: width,
         height: 120,
 
     },
+    showicon: {
+        borderWidth: 0.4,
 
+        width: 30,
+        height: 30,
+
+    },
 });
 
 

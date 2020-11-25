@@ -4,22 +4,15 @@ import {
     Text,
     StyleSheet,
     FlatList,
-    KeyboardAvoidingView, ScrollView,
-    TextInput,
-    Button, Image,
-    TouchableOpacity, Alert, SafeAreaView
+ Image,
 } from 'react-native'
 import { Switch } from 'react-native-switch';
 import { Dimensions, } from 'react-native';
 import firebase from '../firebase/firebase.js';
-import ImagePicker from 'react-native-image-picker';
-//import Constants from 'expo-constants';
-import { request, PERMISSIONS } from 'react-native-permissions';
-import Modal from 'react-native-modal'
-import imgaaddpic from '../images/imgaaddpic.jpg';
-import back from '../images/back.png';
+
 import { ProgressDialog } from 'react-native-simple-dialogs';
 import iconliving from '../images/sanvuon.jpg';
+import icondoamdat from '../images/soil.png';
 export default class garden extends Component {
     constructor(props) {
         super(props)
@@ -28,7 +21,7 @@ export default class garden extends Component {
             post: [],
             modalVisible: false,
             showProgress: false,
-            doamdat: '',
+            doam: '',
         }
 
         this.itemsRef = firebase.database().ref().child('controls/sanvuon');
@@ -104,31 +97,37 @@ export default class garden extends Component {
         return (
             <View style={styles.container}>
 
-                <View style={styles.btninsert}>
-                    <View style={styles.viewback}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.props.navigation.goBack()
-                            }}  >
-                            <Image source={
-                                back}
-
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.viewtenroom}>
+             
                         <Image source={
                             iconliving
                         } style={styles.pickimagerom}></Image>
-                        <Text style={styles.textco}>Sân vườn</Text>
+                  
+
+
+                
+                  <View style={{
+                        flexDirection: 'row',
+                        backgroundColor: '#f1f1f1',
+                        width: null,
+                         marginVertical: width * 8 / 187.5,
+                         padding: width * 3.6 / 187.5,
+                         borderRadius: width * 5 / 187.5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20
+                            }}>
+                                <Image source={icondoamdat} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                    //color: 'white'
+                                }}>{this.state.doam} % </Text>
+                            </View>
+                            
                     </View>
-
-
-                </View>
-                <View style={styles.postTemp}>
-
-                    <Text>Độ ẩm: {this.state.doam}%</Text>
-                </View>
 
                 <FlatList
                     data={this.state.post}
@@ -304,14 +303,20 @@ const styles = StyleSheet.create({
     },
     pickimagerom: {
         borderWidth: 0.5,
-        marginHorizontal: 20,
+        
         justifyContent: 'center',
         backgroundColor: 'white',
-        width: 150,
+        width: width,
         height: 120,
 
     },
+    showicon: {
+        borderWidth: 0.4,
 
+        width: 30,
+        height: 30,
+
+    },
 });
 
 
