@@ -112,8 +112,9 @@ export default class garden extends Component {
                          marginVertical: width * 8 / 187.5,
                          padding: width * 3.6 / 187.5,
                          borderRadius: width * 5 / 187.5,
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                         alignItems:'center',
+                         justifyContent:'center',
+                         alignContent:'center'
                     }}>
                         <View style={{
                                 flexDirection: 'column',

@@ -14,9 +14,11 @@ import firebase from '../firebase/firebase.js';
 
 import { ProgressDialog } from 'react-native-simple-dialogs';
 import iconliving from '../images/phongbep.png';
-import icondoamkk from '../images/humidity.png';
-import iconnhietdo from '../images/hot.png';
+
+
 import iconkhigas from '../images/gas.png';
+import iconkhigasco from '../images/khico.png';
+import iconkhigassmoke from '../images/gassmoke.png';
 export default class Kitchenroom extends Component {
     constructor(props) {
         super(props)
@@ -25,19 +27,21 @@ export default class Kitchenroom extends Component {
             post: [],
             modalVisible: false,
             showProgress: false,
-            nhietdo: '',
-            doam: '',
-            gas: '',
-            shownhietdo: true,
-            showdoam: true,
+
+            khilpg: '',
+            khico: '',
+            khoi: '',
+
             showbutton: true,
             showgas: true,
+            showgasco: true,
+            showgassmoke: true,
         }
 
         this.itemsRef = firebase.database().ref().child('controls/phongbep');
-        this.itemsnhietdo = firebase.database().ref().child('sensor/phongbep/nhietdo');
-        this.itemsdoam = firebase.database().ref().child('sensor/phongbep/doam');
-        this.itemsgas = firebase.database().ref().child('sensor/phongbep/gas');
+        this.itemsgas = firebase.database().ref().child('sensor/phongbep/khilpg');
+        this.itemsgasco = firebase.database().ref().child('sensor/phongbep/khico');
+        this.itemsgassmoke = firebase.database().ref().child('sensor/phongbep/khoi');
     }
 
 
@@ -61,6 +65,7 @@ export default class Kitchenroom extends Component {
                     image: child.val().image,
                     ten: child.val().ten,
                 }
+                
                 items.push(item);
             });
 
@@ -75,49 +80,57 @@ export default class Kitchenroom extends Component {
 
         });
     }
-    listenForItemsnhietdo(itemsRef) {
-        itemsRef.on('value', (snapshot) => {
-            // console.log('Nhiệt độ: ', snapshot.val());
-            this.setState({
-                nhietdo: snapshot.val(),
-                shownhietdo: false
-            });
 
-        });
-    }
-    listenForItemsdoam(itemsRef) {
-        itemsRef.on('value', (snapshot) => {
-            // console.log('Độ ẩm: ', snapshot.val());
-            this.setState({
-                doam: snapshot.val(),
-                showdoam: false
-            });
 
-        });
-    }
     listenForItemsgas(itemsRef) {
+       
         itemsRef.on('value', (snapshot) => {
             // console.log('Độ ẩm: ', snapshot.val());
+
             this.setState({
-                gas: snapshot.val(),
+                khilpg: snapshot.val(),
+
                 showgas: false
             });
+        });
+    }
+    listenForItemsgasco(itemsRef) {
+  
+        itemsRef.on('value', (snapshot) => {
+            // console.log('Độ ẩm: ', snapshot.val());
 
+            this.setState({
+                khico: snapshot.val(),
+
+                showgasco: false
+            });
+        });
+    }
+    listenForItemsgassmoke(itemsRef) {
+
+        itemsRef.on('value', (snapshot) => {
+            // console.log('Độ ẩm: ', snapshot.val());
+            this.setState({
+                khoi: snapshot.val(),
+                showgassmoke: false
+            });
         });
     }
 
     componentDidMount() {
         this.listenForItems(this.itemsRef)
-        this.listenForItemsdoam(this.itemsdoam)
-        this.listenForItemsnhietdo(this.itemsnhietdo)
+
         this.listenForItemsgas(this.itemsgas)
+        this.listenForItemsgasco(this.itemsgasco)
+        this.listenForItemsgassmoke(this.itemsgassmoke)
 
     }
     componentWillUnmount() {
         this.listenForItems(this.itemsRef)
-        this.listenForItemsdoam(this.itemsdoam)
-        this.listenForItemsnhietdo(this.itemsnhietdo)
+
         this.listenForItemsgas(this.itemsgas)
+        this.listenForItemsgasco(this.itemsgasco)
+        this.listenForItemsgassmoke(this.itemsgassmoke)
     }
 
     _hideDialog = () => {
@@ -140,7 +153,7 @@ export default class Kitchenroom extends Component {
                
 
 
-                {this.state.shownhietdo && this.state.showdoam && this.state.showgas ?
+                {this.state.showgas && this.state.showgasco&&this.state.showgaskhoi ?
                     <ActivityIndicator size="large" color="ff00000" /> :
 
                     <View style={{
@@ -156,35 +169,44 @@ export default class Kitchenroom extends Component {
                         <View style={{
                                 flexDirection: 'column',
                                 marginBottom: 10,
-                                marginHorizontal: 20
-                            }}>
-                                <Image source={iconnhietdo} style={styles.showicon} />
-                                <Text style={{
-                                    fontSize: 20,
-                                    //color: 'white'
-                                }}>{this.state.nhietdo} &deg;C </Text>
-                            </View>
-                            <View style={{
-                                flexDirection: 'column',
-                                marginBottom: 10,
-                                marginHorizontal: 20
-                            }}>
-                                <Image source={icondoamkk} style={styles.showicon} />
-                                <Text style={{
-                                    fontSize: 20,
-                                  //  color: 'white'
-                                }}>{this.state.doam} % </Text>
-                            </View>
-                            <View style={{
-                                flexDirection: 'column',
-                                marginBottom: 10,
-                                marginHorizontal: 20
+                                marginHorizontal: 20,
+                                alignItems:'center',
+                                justifyContent:'center',
+                                alignContent:'center'
                             }}>
                                 <Image source={iconkhigas} style={styles.showicon} />
                                 <Text style={{
                                     fontSize: 20,
+                                    //color: 'white'
+                                }}>{this.state.khilpg}</Text>
+                            </View>
+                            <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20,
+                                alignItems:'center',
+                                justifyContent:'center',
+                                alignContent:'center'
+                            }}>
+                                <Image source={iconkhigasco} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
                                   //  color: 'white'
-                                }}>{this.state.gas} % </Text>
+                                }}>{this.state.khico} </Text>
+                            </View>
+                            <View style={{
+                                flexDirection: 'column',
+                                marginBottom: 10,
+                                marginHorizontal: 20,
+                                alignItems:'center',
+                                justifyContent:'center',
+                                alignContent:'center'
+                            }}>
+                                <Image source={iconkhigassmoke} style={styles.showicon} />
+                                <Text style={{
+                                    fontSize: 20,
+                                  //  color: 'white'
+                                }}>{this.state.khoi}  </Text>
                             </View>
                     </View>
                 }

@@ -11,6 +11,8 @@ import iconsecu from '../images/baove.jpg';
 import icondoamkk from '../images/humidity.png';
 import iconnhietdo from '../images/hot.png';
 import iconkhigas from '../images/gas.png';
+import iconkhigasco from '../images/khico.png';
+import iconkhigassmoke from '../images/gassmoke.png';
 import icondoamdat from '../images/soil.png';
 import iconthoitiet from '../images/thoitiet.jpg'
 import { color } from 'react-native-reanimated';
@@ -31,7 +33,9 @@ export default class Splash extends Component {
                 let item = {
                     id: (child.key),
                     doam: child.val().doam,
-                    gas: child.val().gas,
+                    khilpg: child.val().khilpg,
+                    khico: child.val().khico,
+                    khoi: child.val().khoi,
                     nhietdo: child.val().nhietdo,
                     doamdat: child.val().doamdat,
                 }
@@ -109,8 +113,8 @@ export default class Splash extends Component {
         }
         return <View>
             <Text
-                style={{ fontSize: 14, color: 'white', fontWeight: 'bold' }}>
-                 {Type_}
+                style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>
+                {Type_}
             </Text>
         </View>
     }
@@ -134,7 +138,10 @@ export default class Splash extends Component {
                             <View style={{
                                 flexDirection: 'column',
                                 marginBottom: 10,
-                                marginHorizontal: 20
+                                marginHorizontal: 20,
+                                alignItems:'center',
+                                justifyContent:'center',
+                                alignContent:'center'
                             }}>
                                 <Image source={icondoamkk} style={styles.showicon} />
                                 <Text style={{
@@ -146,24 +153,62 @@ export default class Splash extends Component {
 
                         ) :
                         null}
-                    {item.gas ?
+                    {item.khilpg ?
                         (<View style={{
                             flexDirection: 'column',
                             marginBottom: 10,
-                            marginHorizontal: 20
+                            marginHorizontal: 20,
+                            alignItems:'center',
+                            justifyContent:'center',
+                            alignContent:'center'
                         }}>
                             <Image source={iconkhigas} style={styles.showicon} />
                             <Text style={{
                                 fontSize: 20,
                                 color: 'white'
-                            }}>{item.gas} %</Text>
+                            }}>{item.khilpg} </Text>
+                        </View>) :
+                        null}
+                    {item.khico ?
+                        (<View style={{
+                            flexDirection: 'column',
+                            marginBottom: 10,
+                            marginHorizontal: 20,
+                            alignItems:'center',
+                            justifyContent:'center',
+                            alignContent:'center'
+                        }}>
+                            <Image source={iconkhigasco} style={styles.showicon} />
+                            <Text style={{
+                                fontSize: 20,
+                                color: 'white'
+                            }}>{item.khico} </Text>
+                        </View>) :
+                        null}
+                                            {item.khoi ?
+                        (<View style={{
+                            flexDirection: 'column',
+                            marginBottom: 10,
+                            marginHorizontal: 20,
+                            alignItems:'center',
+                            justifyContent:'center',
+                            alignContent:'center'
+                        }}>
+                            <Image source={iconkhigassmoke} style={styles.showicon} />
+                            <Text style={{
+                                fontSize: 20,
+                                color: 'white'
+                            }}>{item.khoi} </Text>
                         </View>) :
                         null}
                     {item.nhietdo ?
                         (<View style={{
                             flexDirection: 'column',
                             marginBottom: 10,
-                            marginHorizontal: 20
+                            marginHorizontal: 20,
+                            alignItems:'center',
+                            justifyContent:'center',
+                            alignContent:'center'
                         }}>
                             <Image source={iconnhietdo} style={styles.showicon} />
                             <Text style={{
@@ -176,7 +221,10 @@ export default class Splash extends Component {
                         (<View style={{
                             flexDirection: 'column',
                             marginBottom: 10,
-                            marginHorizontal: 20
+                            marginHorizontal: 20,
+                            alignItems:'center',
+                            justifyContent:'center',
+                            alignContent:'center'
                         }}>
                             <Image source={icondoamdat} style={styles.showicon} />
                             <Text style={{
