@@ -8,7 +8,9 @@ import {
 
 import { ProgressDialog } from '../node_modules/react-native-simple-dialogs';
 import firebaseConfig from '../firebase/firebase.js';
+
 import GetLocation from 'react-native-get-location';
+//import Geolocation from '@react-native-community/geolocation';
 export default class Weather extends React.Component {
 
     constructor(props) {
@@ -37,14 +39,20 @@ export default class Weather extends React.Component {
     }
 
     componentDidMount = async () => {
-
+let geoOpti={
+    enableHighAccuracy: true,
+    timeout: 15000,
+     maximumAge: 10000
+}
         GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
-            timeout: 10000,
+            timeout: 15000,
+            // maximumAge: 10000
         })
             .then(async location => {
                 this.fetch_weather(location.latitude,
                     location.longitude)
+                    console.log("lat",location.latitude)
             })
             .catch(error => {
                 const { code, message } = error;
