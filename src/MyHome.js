@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Animated, Image, Dimensions, TouchableOpacity, FlatList, Alert, BackHandler, SafeAreaView } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler';
-import iconhome from '../images/home.png';
+import { Text, StyleSheet, View, Animated, Image, Dimensions, TouchableOpacity, FlatList, Alert, BackHandler, SafeAreaView, ImageBackground } from 'react-native'
 import iconliving from '../images/phongkhach.jpg';
 import iconslep from '../images/phongngu.jpg';
-import iconkitchen from '../images/phongbep.png';
+import iconkitchen from '../images/Kitchens.jpg';
 import icongarden from '../images/sanvuon.jpg';
 import firebase from '../firebase/firebase.js';
 import iconsecu from '../images/baove.jpg';
@@ -14,7 +12,8 @@ import iconkhigas from '../images/gas.png';
 import iconkhigasco from '../images/khico.png';
 import iconkhigassmoke from '../images/gassmoke.png';
 import icondoamdat from '../images/soil.png';
-import iconthoitiet from '../images/thoitiet.jpg'
+import iconthoitiet from '../images/thoitiet.jpg';
+import Icons from "react-native-vector-icons/MaterialCommunityIcons";
 import { color } from 'react-native-reanimated';
 export default class Splash extends Component {
     constructor(props) {
@@ -113,7 +112,7 @@ export default class Splash extends Component {
         }
         return <View>
             <Text
-                style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>
+                style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}>
                 {Type_}
             </Text>
         </View>
@@ -121,7 +120,7 @@ export default class Splash extends Component {
     Item = (item) => {
         return (
             <View style={{
-                width: width * 0.9,
+                width: width * 0.9 -10,
                 flex: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -139,15 +138,15 @@ export default class Splash extends Component {
                                 flexDirection: 'column',
                                 marginBottom: 10,
                                 marginHorizontal: 20,
-                                alignItems:'center',
-                                justifyContent:'center',
-                                alignContent:'center'
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                alignContent: 'center'
                             }}>
                                 <Image source={icondoamkk} style={styles.showicon} />
                                 <Text style={{
                                     fontSize: 20,
-                                    color: 'white'
-                                }}>{item.doam} %</Text>
+                                    color: 'black'
+                                }}>{item.doam}%</Text>
                             </View>
 
 
@@ -158,15 +157,15 @@ export default class Splash extends Component {
                             flexDirection: 'column',
                             marginBottom: 10,
                             marginHorizontal: 20,
-                            alignItems:'center',
-                            justifyContent:'center',
-                            alignContent:'center'
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            alignContent: 'center'
                         }}>
                             <Image source={iconkhigas} style={styles.showicon} />
                             <Text style={{
                                 fontSize: 20,
-                                color: 'white'
-                            }}>{item.khilpg} </Text>
+                                color: 'black'
+                            }}>{item.khilpg}</Text>
                         </View>) :
                         null}
                     {item.khico ?
@@ -174,31 +173,31 @@ export default class Splash extends Component {
                             flexDirection: 'column',
                             marginBottom: 10,
                             marginHorizontal: 20,
-                            alignItems:'center',
-                            justifyContent:'center',
-                            alignContent:'center'
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            alignContent: 'center'
                         }}>
                             <Image source={iconkhigasco} style={styles.showicon} />
                             <Text style={{
                                 fontSize: 20,
-                                color: 'white'
-                            }}>{item.khico} </Text>
+                                color: 'black'
+                            }}>{item.khico}</Text>
                         </View>) :
                         null}
-                                            {item.khoi ?
+                    {item.khoi ?
                         (<View style={{
                             flexDirection: 'column',
                             marginBottom: 10,
                             marginHorizontal: 20,
-                            alignItems:'center',
-                            justifyContent:'center',
-                            alignContent:'center'
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            alignContent: 'center'
                         }}>
                             <Image source={iconkhigassmoke} style={styles.showicon} />
                             <Text style={{
                                 fontSize: 20,
-                                color: 'white'
-                            }}>{item.khoi} </Text>
+                                color: 'black'
+                            }}>{item.khoi}</Text>
                         </View>) :
                         null}
                     {item.nhietdo ?
@@ -206,15 +205,15 @@ export default class Splash extends Component {
                             flexDirection: 'column',
                             marginBottom: 10,
                             marginHorizontal: 20,
-                            alignItems:'center',
-                            justifyContent:'center',
-                            alignContent:'center'
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            alignContent: 'center'
                         }}>
                             <Image source={iconnhietdo} style={styles.showicon} />
                             <Text style={{
                                 fontSize: 20,
-                                color: 'white'
-                            }}>{item.nhietdo} &deg;C </Text>
+                                color: 'black'
+                            }}>{item.nhietdo}&deg;C</Text>
                         </View>) :
                         null}
                     {item.doamdat ?
@@ -222,15 +221,15 @@ export default class Splash extends Component {
                             flexDirection: 'column',
                             marginBottom: 10,
                             marginHorizontal: 20,
-                            alignItems:'center',
-                            justifyContent:'center',
-                            alignContent:'center'
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            alignContent: 'center'
                         }}>
                             <Image source={icondoamdat} style={styles.showicon} />
                             <Text style={{
                                 fontSize: 20,
-                                color: 'white'
-                            }}>{item.doamdat} %</Text>
+                                color: 'black'
+                            }}>{item.doamdat}%</Text>
                         </View>) :
                         null}
                 </View>
@@ -239,6 +238,32 @@ export default class Splash extends Component {
             </View>
         );
     }
+    goodMorning() {
+
+        const date = new Date();
+        const hour = date.getHours();
+        console.log('fsfsfs', hour);
+        if (10 >= hour && hour > 0) {
+            return <View>
+                <Text style={styles.txtGood}>Chào buổi sáng   <Icons name={'weather-sunset'} size={25} color={'#FFFFFF'}/></Text>
+            </View>
+        }
+        else if (hour > 10 && 12 >= hour) {
+            return <View>
+                <Text style={styles.txtGood}>Chào buổi trưa   <Icons name={'white-balance-sunny'} size={25} color={'#FFFFFF'}/></Text>
+            </View>
+        }
+        else if (hour > 12 && 18 >= hour) {
+            return <View>
+                <Text style={styles.txtGood}>Chào buổi chiều   <Icons name={'weather-sunset-down'} size={25} color={'#FFFFFF'}/></Text>
+            </View>
+        } else {
+            return <View>
+                <Text style={styles.txtGood}>Chào buổi tối   <Icons name={'weather-night'} size={25} color={'#FFFFFF'}/></Text>
+            </View>
+        }
+
+    };
     render() {
         const DATA = [
             {
@@ -277,12 +302,13 @@ export default class Splash extends Component {
         ];
         return (
             <View style={styles.container}>
-
+                <ImageBackground source={require('../images/Myhouse.jpg')} style={styles.image}>
+                <View style={styles.header}>
+                    {this.goodMorning()}
+                </View>
                 <SafeAreaView style={styles.postTemp}>
                     <FlatList
-                        style={{
-
-                        }}
+                        style={{}}
                         horizontal
                         pagingEnabled={true}
                         showsHorizontalScrollIndicator={false}
@@ -339,6 +365,7 @@ export default class Splash extends Component {
                     numColumns={2}
                     keyExtractor={item => item.id}
                 />
+                </ImageBackground>
             </View>
         )
     }
@@ -353,16 +380,22 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     header: {
-        flexDirection: 'row'
+        flexDirection: 'column',
+        justifyContent: 'center',
+        height: 120,
+        backgroundColor: 'rgba(79, 79, 79,0.9)',
+        borderBottomRightRadius: 40,
+        borderBottomLeftRadius: 40,
     },
     postTemp: {
         flexDirection: 'row',
-        backgroundColor: '#725F7C',
+        backgroundColor: '#FFFFFF',
         width: null,
-        margin: 10,
-        padding: width * 3.6 / 187.5,
+        margin: 20,
+        marginTop: -60,
+        padding: width * 0.005,
         borderRadius: width * 3.6 / 187.5,
-        alignItems: 'center',
+        justifyContent: 'center',
     },
     textalldevices: {
         flexDirection: 'column',
@@ -384,7 +417,9 @@ const styles = StyleSheet.create({
     texttenphong: {
         color: 'black',
         marginHorizontal: 10,
+        alignItems: 'center',
         justifyContent: 'center',
+        alignContent: 'center',
         margin: 10,
         fontSize: 17
     },
@@ -392,7 +427,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         marginHorizontal: 20,
         justifyContent: 'center',
-        backgroundColor: '#432577',
+        backgroundColor: '#444444',
         width: 100,
         height: 100,
     },
@@ -406,12 +441,13 @@ const styles = StyleSheet.create({
     },
     btninsert: {
         height: height * 0.3,
-        alignItems: 'center',
-        margin: 10,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        width: null,
-        margin: 14,
+        
+        margin:15,
+        backgroundColor: 'rgba(248, 248, 255, 0.9)',
+                                        alignItems: 'center',
+                                justifyContent: 'center',
+                                alignContent: 'center',
+        width: width * 0.42,
         padding: width * 3.6 / 187.5,
         shadowColor: "#000",
         shadowOffset: {
@@ -420,7 +456,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
-
+        borderRadius: 15,
         elevation: 4,
     },
     showicon: {
@@ -430,11 +466,16 @@ const styles = StyleSheet.create({
         height: 30,
 
     },
+    txtGood: {
+        color: '#FFFFFF',
+        fontSize: 15,
+        marginLeft: 20,
+        marginTop:-50,
+        fontWeight: 'bold'
+    },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+    },
 })
-// class Tempthorizon{
-//     render(){
-//         return(
-
-//         );
-//     }
-// }

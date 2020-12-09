@@ -6,14 +6,14 @@ import {
     FlatList,
      ScrollView,
      Image,
-     ActivityIndicator
+     ActivityIndicator, ImageBackground
 } from 'react-native'
 import { Switch } from 'react-native-switch';
 import { Dimensions, } from 'react-native';
 import firebase from '../firebase/firebase.js';
 
 import { ProgressDialog } from 'react-native-simple-dialogs';
-import iconliving from '../images/phongbep.png';
+import iconliving from '../images/Kitchens.jpg';
 
 
 import iconkhigas from '../images/gas.png';
@@ -142,14 +142,10 @@ export default class Kitchenroom extends Component {
 
     render() {
         return (
-            <ScrollView>
             <View style={styles.container}>
-
-                
-                   
-                        <Image source={
+                        <ImageBackground source={
                             iconliving
-                        } style={styles.pickimagerom}></Image>
+                        } style={styles.pickimagerom}>
                
 
 
@@ -158,13 +154,15 @@ export default class Kitchenroom extends Component {
 
                     <View style={{
                         flexDirection: 'row',
+                        //marginTop:-50,
                         backgroundColor: '#f1f1f1',
-                        width: null,
-                         marginVertical: width * 8 / 187.5,
-                         padding: width * 3.6 / 187.5,
-                         borderRadius: width * 5 / 187.5,
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        margin:20,
+                        marginVertical: width * 8 / 187.5,
+                        padding: width * 3.6 / 187.5,
+                        borderRadius: width * 5 / 187.5,
+                                        alignItems: 'center',
+                                justifyContent: 'center',
+                                alignContent: 'center',
                     }}>
                         <View style={{
                                 flexDirection: 'column',
@@ -202,7 +200,7 @@ export default class Kitchenroom extends Component {
                                 justifyContent:'center',
                                 alignContent:'center'
                             }}>
-                                <Image source={iconkhigassmoke} style={styles.showicon} />
+                                <Image source={iconkhigassmoke} style={styles.showicon2} />
                                 <Text style={{
                                     fontSize: 20,
                                   //  color: 'white'
@@ -255,8 +253,9 @@ export default class Kitchenroom extends Component {
                     message="Please, wait..."
                     visible={this.state.showProgress}
                 />
+                </ImageBackground>
             </View>
-            </ScrollView>
+          
         )
 
     }
@@ -281,10 +280,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     postContainer: {
+        height: height * 0.3,
         alignItems: 'center',
-        backgroundColor: 'white',
+        margin: 15,
+        backgroundColor: 'rgba(248, 248, 255, 0.9)',
         justifyContent: 'center',
-        margin: 8,
+        width: width * 0.42,
         padding: width * 3.6 / 187.5,
         shadowColor: "#000",
         shadowOffset: {
@@ -293,9 +294,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
-
+        borderRadius: 15,
         elevation: 4,
-        marginRight: 30
     },
     textdevices: {
         fontSize: 20,
@@ -390,12 +390,9 @@ const styles = StyleSheet.create({
 
     },
     pickimagerom: {
-        borderWidth: 0.5,
-        
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: width,
-        height: 120,
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
 
     },
     showicon: {
@@ -403,6 +400,11 @@ const styles = StyleSheet.create({
 
         width: 30,
         height: 30,
+
+    },
+    showicon2: {
+        width: 40,
+        height: 40,
 
     },
 });
