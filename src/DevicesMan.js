@@ -7,7 +7,7 @@ import {
     KeyboardAvoidingView, ScrollView,
     TextInput,
     Button, Image,
-    TouchableOpacity, Alert, SafeAreaView, ActionSheetIOS, ActivityIndicator
+    TouchableOpacity, Alert, SafeAreaView, ActionSheetIOS, ActivityIndicator, ImageBackground
 } from 'react-native'
 import { Switch } from 'react-native-switch';
 import { Dimensions, } from 'react-native';
@@ -35,7 +35,7 @@ export default class DevicesMan extends Component {
             showbutton: true,
             shownhietdo: true,
             showdoam: true,
-            trangthai:''
+            trangthai: ''
         }
 
         this.itemsRef = firebase.database().ref().child('controls/phongkhach');
@@ -48,10 +48,10 @@ export default class DevicesMan extends Component {
 
         firebase.database().ref('controls/phongkhach').child(ten).update({
             'trangthai': values,
-    
-    
+
+
         })
-    
+
 
 
 
@@ -89,7 +89,7 @@ export default class DevicesMan extends Component {
             // console.log('Nhiệt độ: ', snapshot.val());
             this.setState({
                 nhietdo: snapshot.val(),
-                shownhietdo:false
+                shownhietdo: false
             });
 
         });
@@ -99,7 +99,7 @@ export default class DevicesMan extends Component {
             //    console.log('Độ ẩm: ', snapshot.val());
             this.setState({
                 doam: snapshot.val(),
-                showdoam:false
+                showdoam: false
             });
 
         });
@@ -141,126 +141,99 @@ export default class DevicesMan extends Component {
 
     render() {
         return (
-            <ScrollView>
-            <View style={styles.container}>
-                {/* <Modal
-                    animationType="slide"
-                    transparent={false}
-                    isVisible={this.state.modalVisible}
-                    onBackButtonPress={this._hideDialog}
-                    onBackdropPress={this._hideDialog}>
-
-                    <InsertProduct />
-                </Modal> */}
-               
-
-                        <Image source={
-                            iconliving
-                        } style={styles.pickimagerom}></Image>
-                  
-
-
-                
-                {/* <View style={styles.postTemp}>
-                    <TouchableOpacity
-
-                        onPress={() => {
-                            this._showDialog()
-                        }}  >
-                        <Text style={styles.textinsert}>Thêm thiết bị</Text>
-                    </TouchableOpacity>
-
-
-                </View> */}
-
-                {this.state.shownhietdo && this.state.showdoam ?
-                    <ActivityIndicator size="large" color="ff00000" /> :
-                    <View style={{
-                        flexDirection: 'row',
-                        backgroundColor: '#f1f1f1',
-                        width: null,
-                         marginVertical: width * 8 / 187.5,
-                         padding: width * 3.6 / 187.5,
-                         borderRadius: width * 5 / 187.5,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-                        <View style={{
-                                flexDirection: 'column',
-                                marginBottom: 10,
-                                marginHorizontal: 20
-                            }}>
-                                <Image source={iconnhietdo} style={styles.showicon} />
-                                <Text style={{
-                                    fontSize: 20,
-                                    //color: 'white'
-                                }}>{this.state.nhietdo} &deg;C </Text>
-                            </View>
+                <View style={styles.container}>
+                    <ImageBackground source={
+                        iconliving
+                    } style={styles.pickimagerom}>
+                        {this.state.shownhietdo && this.state.showdoam ?
+                            <ActivityIndicator size="large" color="ff00000" /> :
                             <View style={{
-                                flexDirection: 'column',
-                                marginBottom: 10,
-                                marginHorizontal: 20
+                                flexDirection: 'row',
+                                
+                                backgroundColor: '#f1f1f1',
+                                margin:20,
+                                marginVertical: width * 10 / 187.5,
+                                padding: width * 3.6 / 187.5,
+                                borderRadius: width * 5 / 187.5,
+                                alignItems: 'center',
+                                justifyContent: 'center',
                             }}>
-                                <Image source={icondoamkk} style={styles.showicon} />
-                                <Text style={{
-                                    fontSize: 20,
-                                  //  color: 'white'
-                                }}>{this.state.doam} % </Text>
+                                <View style={{
+                                    flexDirection: 'column',
+                                    marginBottom: 10,
+                                    marginHorizontal: 20
+                                }}>
+                                    <Image source={iconnhietdo} style={styles.showicon} />
+                                    <Text style={{
+                                        fontSize: 20,
+                                        //color: 'white'
+                                    }}>{this.state.nhietdo} &deg;C </Text>
+                                </View>
+                                <View style={{
+                                    flexDirection: 'column',
+                                    marginBottom: 10,
+                                    marginHorizontal: 20
+                                }}>
+                                    <Image source={icondoamkk} style={styles.showicon} />
+                                    <Text style={{
+                                        fontSize: 20,
+                                        //  color: 'white'
+                                    }}>{this.state.doam} % </Text>
+                                </View>
                             </View>
-                    </View>
-                }
-
-
-                
-                <View>
-                {this.state.showbutton ? <ActivityIndicator size="large" color="ff00000" />
-
-                    :
-                   
-                    <FlatList
-                        data={this.state.post}
-
-                        renderItem={({ item }) =>
-
-                            <View style={styles.postContainer}>
-
-
-
-                                <Text style={styles.textdevices}>
-                                    {item.ten}
-                                </Text>
-                                <Image source={{ uri: item.image }} style={styles.showimage} />
-                                <Switch
-                                    onValueChange={(value) => this._changeled(item.id, value)}
-                                    value={item.trangthai}
-                                    backgroundActive={'#432577'}
-                                >
-                                </Switch>
-
-
-
-
-                            </View>
-
-
                         }
-                        numColumns={2}
-                        keyExtractor={item => item.id}
-                    />
-                   
-                }</View>
 
 
-                <ProgressDialog
-                    title="Loading"
-                    activityIndicatorColor="blue"
-                    activityIndicatorSize="large"
-                    animationType="fade"
-                    message="Please, wait..."
-                    visible={this.state.showProgress}
-                />
-            </View>
-            </ScrollView>
+
+                        <View>
+                            {this.state.showbutton ? <ActivityIndicator size="large" color="ff00000" />
+
+                                :
+
+                                <FlatList
+                                    data={this.state.post}
+
+                                    renderItem={({ item }) =>
+
+                                        <View style={styles.postContainer}>
+
+
+
+                                            <Text style={styles.textdevices}>
+                                                {item.ten}
+                                            </Text>
+                                            <Image source={{ uri: item.image }} style={styles.showimage} />
+                                            <Switch
+                                                onValueChange={(value) => this._changeled(item.id, value)}
+                                                value={item.trangthai}
+                                                backgroundActive={'#432577'}
+                                            >
+                                            </Switch>
+
+
+
+
+                                        </View>
+
+
+                                    }
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+
+                            }</View>
+
+
+                        <ProgressDialog
+                            title="Loading"
+                            activityIndicatorColor="blue"
+                            activityIndicatorSize="large"
+                            animationType="fade"
+                            message="Please, wait..."
+                            visible={this.state.showProgress}
+                        />
+                    </ImageBackground>
+                </View>
         )
 
     }
@@ -269,14 +242,13 @@ const { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
         backgroundColor: 'white',
         alignContent: 'center',
         justifyContent: 'center',
-
+        width: width,
     },
     postTemp: {
-        flex:1,
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: '#f1f1f1',
         width: null,
@@ -287,15 +259,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     postinfoTemp: {
-        flex:1,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
     postContainer: {
+          height: height * 0.3,
         alignItems: 'center',
-        backgroundColor: 'white',
+        margin: 15,
+        backgroundColor: 'rgba(248, 248, 255, 0.9)',
         justifyContent: 'center',
-        margin: 8,
+        width: width * 0.42,
         padding: width * 3.6 / 187.5,
         shadowColor: "#000",
         shadowOffset: {
@@ -304,9 +278,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
-
+        borderRadius: 15,
         elevation: 4,
-        marginRight: 30
     },
     textdevices: {
         fontSize: 20,
@@ -401,12 +374,9 @@ const styles = StyleSheet.create({
 
     },
     pickimagerom: {
-        borderWidth: 0.5,
-        
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: width,
-        height: 120,
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
 
     },
     showicon: {

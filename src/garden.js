@@ -4,7 +4,7 @@ import {
     Text,
     StyleSheet,
     FlatList,
- Image,
+    Image, ImageBackground
 } from 'react-native'
 import { Switch } from 'react-native-switch';
 import { Dimensions, } from 'react-native';
@@ -66,7 +66,7 @@ export default class garden extends Component {
 
     listenForItemsdoamdat(itemsRef) {
         itemsRef.on('value', (snapshot) => {
-           // console.log('Độ ẩm: ', snapshot.val());
+            // console.log('Độ ẩm: ', snapshot.val());
             this.setState({
                 doam: snapshot.val()
             });
@@ -80,7 +80,7 @@ export default class garden extends Component {
 
 
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.listenForItems(this.itemsRef)
         this.listenForItemsdoamdat(this.itemsdoamdat)
 
@@ -96,79 +96,78 @@ export default class garden extends Component {
     render() {
         return (
             <View style={styles.container}>
-
-             
-                        <Image source={
-                            iconliving
-                        } style={styles.pickimagerom}></Image>
-                  
-
-
-                
-                  <View style={{
+                <ImageBackground source={
+                    iconliving
+                } style={styles.pickimagerom}>
+                    <View style={{
                         flexDirection: 'row',
                         backgroundColor: '#f1f1f1',
                         width: null,
-                         marginVertical: width * 8 / 187.5,
-                         padding: width * 3.6 / 187.5,
-                         borderRadius: width * 5 / 187.5,
-                         alignItems:'center',
-                         justifyContent:'center',
-                         alignContent:'center'
+                        
+                        margin: 20,
+                        marginVertical: width * 8 / 187.5,
+                        padding: width * 3.6 / 187.5,
+                        borderRadius: width * 5 / 187.5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     }}>
                         <View style={{
-                                flexDirection: 'column',
-                                marginBottom: 10,
-                                marginHorizontal: 20
-                            }}>
-                                <Image source={icondoamdat} style={styles.showicon} />
-                                <Text style={{
-                                    fontSize: 20,
-                                    //color: 'white'
-                                }}>{this.state.doam} % </Text>
-                            </View>
-                            
-                    </View>
-
-                <FlatList
-                    data={this.state.post}
-
-                    renderItem={({ item }) =>
-
-                        <View style={styles.postContainer}>
-
-
-
-                            <Text style={styles.textdevices}>
-                                {item.ten}
-                            </Text>
-                            <Image source={{ uri: item.image }} style={styles.showimage} />
-                            <Switch
-                                onValueChange={(value) => this._changeled(item.id, value)}
-                                value={item.trangthai}
-                                backgroundActive={'#432577'}
-                            >
-                            </Switch>
-
-
-
-
+                            flexDirection: 'column',
+                            marginBottom: 10,
+                            marginHorizontal: 20,
+                                        alignItems: 'center',
+                                justifyContent: 'center',
+                                alignContent: 'center',
+                        }}>
+                            <Image source={icondoamdat} style={styles.showicon} />
+                            <Text style={{
+                                fontSize: 20,
+                                //color: 'white'
+                            }}>{this.state.doam} % </Text>
                         </View>
 
+                    </View>
 
-                    }
-                    numColumns={2}
-                    keyExtractor={item => item.id}
-                />
+                    <FlatList
+                        data={this.state.post}
 
-                <ProgressDialog
-                    title="Loading"
-                    activityIndicatorColor="blue"
-                    activityIndicatorSize="large"
-                    animationType="fade"
-                    message="Please, wait..."
-                    visible={this.state.showProgress}
-                />
+                        renderItem={({ item }) =>
+
+                            <View style={styles.postContainer}>
+
+
+
+                                <Text style={styles.textdevices}>
+                                    {item.ten}
+                                </Text>
+                                <Image source={{ uri: item.image }} style={styles.showimage} />
+                                <Switch
+                                    onValueChange={(value) => this._changeled(item.id, value)}
+                                    value={item.trangthai}
+                                    backgroundActive={'#432577'}
+                                >
+                                </Switch>
+
+
+
+
+                            </View>
+
+
+                        }
+                        numColumns={2}
+                        keyExtractor={item => item.id}
+                    />
+
+                    <ProgressDialog
+                        title="Loading"
+                        activityIndicatorColor="blue"
+                        activityIndicatorSize="large"
+                        animationType="fade"
+                        message="Please, wait..."
+                        visible={this.state.showProgress}
+                    />
+                </ImageBackground>
             </View>
         )
 
@@ -194,10 +193,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     postContainer: {
+      height: height * 0.3,
         alignItems: 'center',
-        backgroundColor: 'white',
+        margin: 15,
+        backgroundColor: 'rgba(248, 248, 255, 0.9)',
         justifyContent: 'center',
-        margin: 8,
+        width: width * 0.42,
         padding: width * 3.6 / 187.5,
         shadowColor: "#000",
         shadowOffset: {
@@ -206,9 +207,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
-
+        borderRadius: 15,
         elevation: 4,
-        marginRight: 30
     },
     textdevices: {
         fontSize: 20,
@@ -303,12 +303,9 @@ const styles = StyleSheet.create({
 
     },
     pickimagerom: {
-        borderWidth: 0.5,
-        
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: width,
-        height: 120,
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
 
     },
     showicon: {

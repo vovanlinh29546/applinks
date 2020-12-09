@@ -3,18 +3,18 @@ import { Switch, ScrollView, Text, View, StyleSheet, ImageBackground, TextInput,
 
 import { ProgressDialog } from '../node_modules/react-native-simple-dialogs';
 import firebaseConfig from '../firebase/firebase.js';
-import bgimage from '../images/smarthomelogin.jpg';
+
 import logo from '../images/logo.png';
-// import Icon from 'react-native-vector-icons/Ionicons';
+
 import Icon from '../node_modules/react-native-vector-icons/Ionicons';
-// //rememlogin
-// import Svg, { Image, Circle, ClipPath } from 'react-native-svg'
+
 import {
   setUserName, getUserName,
   setUserPassWord, getUserPassWord,
   setIsRemembered, getIsRemembered,
   removeRememberMe,
 } from "./auth";
+import PushNotification from"react-native-push-notification";
 export default class LoginScreen extends React.Component {
 
   constructor(props) {
@@ -115,6 +115,41 @@ export default class LoginScreen extends React.Component {
     } catch (error) {
       console.log("Error", error);
     }
+    
+    PushNotification.configure({
+  onRegister: function (token) {
+    console.log("TOKEN:", token);
+  },
+ 
+  // (required) Called when a remote is received or opened, or local notification is opened
+  onNotification: function (notification) {
+    console.log("NOTIFICATION:", notification);
+
+  //  notification.finish(PushNotificationIOS.FetchResult.NoData);
+  },
+ 
+  // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
+  onAction: function (notification) {
+    console.log("ACTION:", notification.action);
+    console.log("NOTIFICATION:", notification);
+ 
+    // process the action
+  },
+ 
+  onRegistrationError: function(err) {
+    console.error(err.message, err);
+  },
+ 
+  // IOS ONLY (optional): default: all - Permissions to register.
+  permissions: {
+    alert: true,
+    badge: true,
+    sound: true,
+  },
+
+  popInitialNotification: true,
+  requestPermissions: true,
+});
   }
   componentWillUnmount() {
     BackHandler.addEventListener('hardwareBackPress', function () {
@@ -126,9 +161,9 @@ export default class LoginScreen extends React.Component {
   render() {
     const { email, password, rememberMe, } = this.state;
     return (
-      <ImageBackground
-      source={
-         bgimage}
+      <View
+      // source={
+      //    bgimage}
       style={styles.backgroundcontainer}>
         <View style={styles.logocontainer}>
           <Image
@@ -141,45 +176,18 @@ export default class LoginScreen extends React.Component {
         <ScrollView keyboardShouldPersistTaps="handled" style={styles.inputcontainerall} >
 
           <KeyboardAvoidingView style={styles.inputcontainerall} behavior="position" enabled>
-{/*             
-            <Svg height={HEIGHT * 0.35}
-              width={WIDTH}
-              style={{
-                
-              }}>
-              <ClipPath
-                id="clip"
-              >
-                <Circle
-                  r={HEIGHT * 0.35}
-                  cx={WIDTH*0.4}
-                >
 
-                </Circle>
-              </ClipPath>
-              <Image href={require('../images/smarthomelogin.jpg')}
-                width={WIDTH}
-                height={HEIGHT * 0.35}
-                preserveAspectRatio="xMidYMid slice"
-                clipPath="url(#clip)"
-
-              >
-
-
-              </Image>
-            </Svg> 
-             */}
             <TouchableWithoutFeedback style={styles.inputcontainerall}>
               <View style={styles.inputcontainerall}>
 
 
                 <View style={styles.inputcontainer}>
-                  <Icon name={'ios-mail'} size={28} color={'gray'}
+                  <Icon name={'ios-mail'} size={28} color={'black'}
                     style={styles.inputicon} />
                   <TextInput
                     style={styles.input}
                     placeholder="Username"
-                    placeholderTextColor={'white'}
+                    placeholderTextColor={'black'}
                     returnKeyType="next"
                     underlineColorAndroid='transparent'
                     onChangeText={(email) => this.setState({ email })}
@@ -192,13 +200,13 @@ export default class LoginScreen extends React.Component {
                 </View >
                 <View style={styles.inputcontainer}>
 
-                  <Icon name={'ios-lock-open-sharp'} size={28} color={'gray'}
+                  <Icon name={'ios-lock-open-sharp'} size={28} color={'black'}
                     style={styles.inputicon} />
                   <TextInput
                     style={styles.input}
                     placeholder="Password"
                     secureTextEntry={this.state.showPass}
-                    placeholderTextColor={'white'}
+                    placeholderTextColor={'black'}
                     underlineColorAndroid='transparent'
                     onChangeText={(password) => this.setState({ password })}
                     value={this.state.password}
@@ -206,13 +214,13 @@ export default class LoginScreen extends React.Component {
                   />
 
                   <TouchableOpacity style={styles.btneye} onPress={this.showPass.bind(this)}>
-                    <Icon name={this.state.press == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'white'} />
+                    <Icon name={this.state.press == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'black'} />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.inputremem}>
                   <Text style={styles.textlogin}>Lưu mật khẩu?</Text>
                   <Switch
-                    trackColor={{ false: "#DCDCD8", true: "#432577" }}
+                    trackColor={{ false: "#DCDCD8", true: "#4D128D" }}
                     thumbColor={rememberMe ? "#ECDB97" : "#FFFFFF"}
                     onValueChange={this.toggleSwitch}
                     value={rememberMe}
@@ -224,7 +232,7 @@ export default class LoginScreen extends React.Component {
                 <View style={styles.inputcontainer}>
                   <TouchableOpacity style={styles.btnlogin}
                     onPress={this.getData.bind(this, this.state.email, this.state.password)}  >
-                    <Text style={styles.textlogin}>Đăng nhập</Text>
+                    <Text style={styles.textlogin2}>Đăng nhập</Text>
                   </TouchableOpacity>
 
                 </View>
@@ -250,7 +258,7 @@ export default class LoginScreen extends React.Component {
           message="Please, wait..."
           visible={this.state.showProgress}
         />
-      </ImageBackground>
+      </View>
     );
   }
 }
@@ -262,28 +270,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: WIDTH,
-    height: HEIGHT*0.78,
-    backgroundColor: 'white',
-    borderRadius:50,
+
   },
   logocontainer: {
     alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 30,
+    marginTop: 20,
   },
 
   logo: {
+    marginTop:40,
     width: WIDTH * 0.4,
     height: HEIGHT * 0.2,
 
   },
   logotext: {
     fontSize: 24,
-    fontWeight: '500',
+    fontWeight: 'bold',
     marginTop: 10,
-
     marginBottom: 10,
-    color:'white'
+    
   },
   input: {
     width: WIDTH *0.85,
@@ -291,15 +296,15 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     fontSize: 16,
     paddingLeft: 45,
-    backgroundColor: 'rgba(0,0,0,0.35)',
-    color: 'white',
+    backgroundColor: 'rgba(52, 52, 52, 0.4)',
+    color: 'black',
     marginHorizontal: 25,
     borderColor: 'black',
     borderWidth: 0.5,
 
   },
   inputcontainer: {
-    marginTop: 10,
+    marginTop: 15,
     alignItems: 'center',
 
   },
@@ -310,6 +315,7 @@ const styles = StyleSheet.create({
     marginLeft: 22,
   },
   inputcontainerall: {
+    marginTop:20,
     width: '100%',
     height: '100%',
   },
@@ -319,7 +325,7 @@ const styles = StyleSheet.create({
     width: WIDTH *0.5,
     height: 45,
     borderRadius: 15,
-    backgroundColor: '#432577',
+    backgroundColor: '#4D128D',
     justifyContent: 'center',
     alignContent:'center',
     alignItems:'center',
@@ -329,10 +335,16 @@ const styles = StyleSheet.create({
 
   },
   textlogin: {
-    color: 'white',
+    marginLeft:20,
+    color: 'black',
     fontSize: 16,
     textAlign: 'center',
 
+  },
+  textlogin2: {
+    color: '#F8F8FF',
+    fontSize: 16,
+    textAlign: 'center',
   },
   textregis: {
     color: 'white',

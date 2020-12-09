@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "834546285506",
+    "firebase_url": "https://linhreactbeginer.firebaseio.com",
+    "project_id": "linhreactbeginer",
+    "storage_bucket": "linhreactbeginer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834546285506:android:c8881ed2e8af59e4e1b45b",
+        "android_client_info": {
+          "package_name": "com.applinks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834546285506-e3elsdclpgtkklt3ujkfmhod0sb096hu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.applinks",
+            "certificate_hash": "68e9e9d53b07c3655f9344e7359788b0851826dc"
+          }
+        },
+        {
+          "client_id": "834546285506-pgm4shnbve9mob221a74562lv3n8muls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtbaIOituMbh9wYr3MOvWeUiJ0sQG_BoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834546285506-pgm4shnbve9mob221a74562lv3n8muls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

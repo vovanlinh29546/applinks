@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image,TextInput,Dimensions,ImageBackground,
 TouchableOpacity,ToastAndroid,KeyboardAvoidingView,TouchableWithoutFeedback,Alert,ScrollView } from 'react-native';
-import bgimage from '../images/smarthomelogin.jpg';
+import bgimage from '../images/login.jpg';
 import logo from '../images/logo.png';
 
 import firebaseConfig from '../firebase/firebase.js';
@@ -96,9 +96,8 @@ export default class RegisterScreen extends React.Component {
 
     return (
 
-      <ImageBackground
-      source={
-         bgimage}
+      <View
+      
       style={styles.backgroundcontainer}>
         <View style={styles.logocontainer}>
           <Image
@@ -113,7 +112,7 @@ export default class RegisterScreen extends React.Component {
         <View style={styles.inputcontainerall}>
 
           <View style={styles.inputcontainer}>
-            <Icon name={'ios-mail'} size={28} color={'white'}
+            <Icon name={'ios-mail'} size={28} color={'black'}
               style={styles.inputicon}/>
               <TextInput
                 style={styles.input}
@@ -131,7 +130,7 @@ export default class RegisterScreen extends React.Component {
 
 
           <View style={styles.inputcontainer} >
-            <Icon name={'ios-lock-open-sharp'} size={28} color={'white'}
+            <Icon name={'ios-lock-open-sharp'} size={28} color={'black'}
               style={styles.inputicon}/>
               <TextInput
                 style={styles.input}
@@ -146,14 +145,14 @@ export default class RegisterScreen extends React.Component {
               />
 
               <TouchableOpacity style={styles.btneye} onPress={this.showPass.bind(this)}>
-              <Icon name={this.state.press == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'white'}  />
+              <Icon name={this.state.press == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'black'}  />
               </TouchableOpacity>
           </View>
 
 
 
           <View style={styles.inputcontainer} >
-            <Icon name={'ios-lock-open-sharp'} size={28} color={'white'}
+            <Icon name={'ios-lock-open-sharp'} size={28} color={'black'}
               style={styles.inputicon}/>
               <TextInput
                 style={styles.input}
@@ -168,7 +167,7 @@ export default class RegisterScreen extends React.Component {
               />
 
               <TouchableOpacity style={styles.btneye} onPress={this.showPass1.bind(this)}>
-              <Icon name={this.state.press1 == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'white'}  />
+              <Icon name={this.state.press1 == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'black'}  />
               </TouchableOpacity>
           </View>
 
@@ -193,7 +192,7 @@ export default class RegisterScreen extends React.Component {
           visible={ this.state.showProgress }
       />
 
-</ImageBackground>
+</View>
     );
   }
 }

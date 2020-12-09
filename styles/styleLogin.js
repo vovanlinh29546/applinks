@@ -8,41 +8,38 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width:WIDTH,
-        height:HEIGHT*0.78,
-        borderBottomLeftRadius: 55,
-            borderBottomRightRadius: 55,
+
+
       },
       logocontainer: {
-        alignItems: 'center',
-        marginBottom: 20,
-        marginTop: 30,
+    alignItems: 'center',
+    marginTop: 20,
       },
     
       logo: {
-        marginTop: 0,
-        width: 135,
-        height: 120,
+    marginTop:40,
+    width: WIDTH * 0.4,
+    height: HEIGHT * 0.2,
     
       },
       logotext: {
-        color: 'white',
         fontSize: 24,
-        fontWeight: '500',
+            fontWeight: 'bold',
         marginTop: 10,
 
         marginBottom: 10,
       },
       input: {
-        width: WIDTH - 55,
-        height: 45,
-        borderRadius: 25,
-        fontSize: 16,
-        paddingLeft: 45,
-        backgroundColor: 'rgba(0,0,0,0.35)',
-        color: 'white',
-        marginHorizontal: 25,
-        borderColor: 'white',
-        borderWidth: 0.5,
+    width: WIDTH *0.85,
+    height: 45,
+    borderRadius: 15,
+    fontSize: 16,
+    paddingLeft: 45,
+    backgroundColor: 'rgba(52, 52, 52, 0.4)',
+    color: 'black',
+    marginHorizontal: 25,
+    borderColor: 'black',
+    borderWidth: 0.5,
         
       },
       inputcontainer: {

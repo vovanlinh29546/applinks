@@ -7,7 +7,7 @@ import {
     KeyboardAvoidingView, ScrollView,
     TextInput,
     Button, Image,
-    TouchableOpacity, Alert, SafeAreaView,ActivityIndicator
+    TouchableOpacity, Alert, SafeAreaView,ActivityIndicator, ImageBackground
 } from 'react-native'
 import { Switch } from 'react-native-switch';
 import { Dimensions, } from 'react-native';
@@ -93,10 +93,9 @@ export default class Security extends Component {
     render() {
         return (
             <View style={styles.container}> 
-             <ScrollView>
-                        <Image source={
+                        <ImageBackground source={
                             iconliving
-                        } style={styles.pickimagerom}></Image>
+                        } style={styles.pickimagerom}>
            
 
                
@@ -135,7 +134,6 @@ export default class Security extends Component {
                     keyExtractor={item => item.id}
                 />
             }</View>
-            </ScrollView>
                 <ProgressDialog
                     title="Loading"
                     activityIndicatorColor="blue"
@@ -144,6 +142,7 @@ export default class Security extends Component {
                     message="Please, wait..."
                     visible={this.state.showProgress}
                 />
+                </ImageBackground>
             </View>
         )
 
@@ -169,10 +168,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     postContainer: {
+        height: height * 0.3,
         alignItems: 'center',
-        backgroundColor: 'white',
+        margin: 15,
+        backgroundColor: 'rgba(248, 248, 255, 0.9)',
         justifyContent: 'center',
-        margin: 8,
+        width: width * 0.42,
         padding: width * 3.6 / 187.5,
         shadowColor: "#000",
         shadowOffset: {
@@ -181,9 +182,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
-
+        borderRadius: 15,
         elevation: 4,
-        marginRight: 30
     },
     textdevices: {
         fontSize: 20,
@@ -278,12 +278,9 @@ const styles = StyleSheet.create({
 
     },
     pickimagerom: {
-        borderWidth: 0.5,
-        
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: width,
-        height: 120,
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
     },
 
 });

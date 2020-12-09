@@ -26,24 +26,20 @@ function App() {
       <Stack.Navigator initialRouteName="Splash"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#432577',
+            backgroundColor: '#444444',
+            // alignItems: 'center'
 
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: 'bold',
-            
+            fontSize:25
           },
         }}
       >
         <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
         <Stack.Screen name="Đăng nhập" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Đăng ký" component={Register}  />
-        <Stack.Screen name="Trang chủ" component={Myhome}
-          options={{
-
-            headerLeft: null
-          }} />
+        <Stack.Screen name="Trang chủ" component={Myhome}  options={{headerLeft: null}} />
         <Stack.Screen name="Phòng khách" component={DevicesMan} />
         <Stack.Screen name="Phòng ngủ" component={Bedroom} />
         <Stack.Screen name="Phòng bếp" component={Kitchenroom} />
