@@ -78,7 +78,7 @@ export default class DevicesMan extends Component {
                 showbutton: false
             });
             this.state.post.map((item, idx) => {
-                console.log(item.id)
+                console.log("ddasdsadsdsd",item.id)
             })
 
         });

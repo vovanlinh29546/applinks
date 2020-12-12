@@ -3,7 +3,6 @@ import { Switch, ScrollView, Text, View, StyleSheet, ImageBackground, TextInput,
 
 import { ProgressDialog } from '../node_modules/react-native-simple-dialogs';
 import firebaseConfig from '../firebase/firebase.js';
-
 import logo from '../images/logo.png';
 
 import Icon from '../node_modules/react-native-vector-icons/Ionicons';
@@ -26,7 +25,9 @@ export default class LoginScreen extends React.Component {
       press: false,
       showProgress: false,
       rememberMe: false,
+      madevices:""
     };
+    // this._setToken = this._setToken.bind(this)
   }
 
   openProgress = (kt) => {
@@ -48,6 +49,7 @@ export default class LoginScreen extends React.Component {
       })
       this.openProgress(true);
       this.onLogin();
+
     } else {
 
       Alert.alert('Lỗi! ', 'Vui lòng nhập đầy đủ thông tin!', [], { cancelable: true });
@@ -74,6 +76,7 @@ export default class LoginScreen extends React.Component {
           email: email,
 
         })
+        this._changeTokenFCM(email)
         this.openProgress(false);
 
       })
@@ -95,13 +98,27 @@ export default class LoginScreen extends React.Component {
     const { rememberMe } = this.state;
     this.setState({ rememberMe: !rememberMe });
   };
+  _changeTokenFCM(name) {
+
+PushNotification.configure({
+  onRegister: function (tokens) {
+  //  madevices=tokens.token;
+        firebaseConfig.database().ref('notifications/devices').update({
+          'name':name,
+          'token': tokens.token,
+        })
+  },
+ 
+  
+});
+    }
   componentDidMount = async () => {
+    let {madevices}=this.setState;
     BackHandler.addEventListener('hardwareBackPress', function () {
       BackHandler.exitApp()
       return true;
     });
     try {
-
       const isRemembered = await getIsRemembered();
       if (isRemembered === "yes") {
         const username = await getUserName();
@@ -115,13 +132,7 @@ export default class LoginScreen extends React.Component {
     } catch (error) {
       console.log("Error", error);
     }
-    
     PushNotification.configure({
-  onRegister: function (token) {
-    console.log("TOKEN:", token);
-  },
- 
-  // (required) Called when a remote is received or opened, or local notification is opened
   onNotification: function (notification) {
     console.log("NOTIFICATION:", notification);
 
@@ -149,6 +160,7 @@ export default class LoginScreen extends React.Component {
 
   popInitialNotification: true,
   requestPermissions: true,
+  
 });
   }
   componentWillUnmount() {
@@ -159,7 +171,7 @@ export default class LoginScreen extends React.Component {
   }
 
   render() {
-    const { email, password, rememberMe, } = this.state;
+    const { email, password, rememberMe,madevices } = this.state;
     return (
       <View
       // source={
@@ -186,7 +198,7 @@ export default class LoginScreen extends React.Component {
                     style={styles.inputicon} />
                   <TextInput
                     style={styles.input}
-                    placeholder="Username"
+                    placeholder="Email"
                     placeholderTextColor={'black'}
                     returnKeyType="next"
                     underlineColorAndroid='transparent'
@@ -272,7 +284,7 @@ const styles = StyleSheet.create({
     width: WIDTH,
 
   },
-  logocontainer: {
+logocontainer: {
     alignItems: 'center',
     marginTop: 20,
   },

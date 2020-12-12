@@ -145,17 +145,25 @@ android {
         }
     }
     signingConfigs {
-        debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+        // debug {
+        //     storeFile file('my_private_key.keystore')
+        //     storePassword 'linh260200'
+        //     keyAlias 'linh260200'
+        //     keyPassword 'linh260200'
+        // }
+        release {
+            if (project.hasProperty('my_private_key.keystore')) {
+                storeFile file('my_private_key.keystore')
+                storePassword 'linh260200'
+                keyAlias 'linh260200'
+                keyPassword 'linh260200'
+            }
         }
     }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-        }
+        // debug {
+        //     signingConfig signingConfigs.debug
+        // }
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.

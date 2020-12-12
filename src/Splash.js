@@ -12,7 +12,7 @@ export default class Splash extends Component {
     }
     state = {
         animatedValue: new Animated.Value(0),
-        animatedYValue: new Animated.Value(-100),
+        animatedYValue: new Animated.Value(-200),
 
     }
 
@@ -24,14 +24,14 @@ export default class Splash extends Component {
     _fadeAnimation() {
         Animated.timing(this.state.animatedValue, {
             toValue: 1,
-            duration: 2000
+            duration: 1400
         }).start();
     }
 
     _TransitionAnimation() {
         Animated.timing(this.state.animatedYValue, {
-            toValue: 0,
-            duration: 1400
+            toValue: 1,
+            duration: 2000
         }).start();
     }
 
@@ -48,7 +48,10 @@ export default class Splash extends Component {
                     <Image style={styles.image} resizeMode={'contain'} source={logo} />
                     
                 </Animated.View>
-                <Animated.View style={styles.containertext}>
+                <Animated.View style={[styles.containertext,{
+                        opacity: this.state.animatedValue,
+                        top: this.state.animatedYValue,
+                }]}>
                 <Text style={styles.text} >LINKS</Text>
                 </Animated.View>
             </View>

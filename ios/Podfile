@@ -8,6 +8,8 @@ target 'applinks' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-voice', :path => '../node_modules/@react-native-community/voice'
+
   target 'applinksTests' do
     inherit! :complete
     # Pods for testing

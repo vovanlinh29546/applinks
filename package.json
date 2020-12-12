@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/voice": "^1.1.9",
     "@react-native-firebase/app": "^10.1.0",
     "@react-native-firebase/messaging": "^10.1.1",
     "@react-navigation/bottom-tabs": "^5.8.0",
@@ -22,6 +23,7 @@
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-background-timer": "^2.4.1",
+    "react-native-flatlist-slider": "^1.0.5",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-get-location": "^1.4.3",
     "react-native-image-picker": "^2.3.3",
@@ -33,6 +35,8 @@
     "react-native-screens": "^2.11.0",
     "react-native-simple-dialogs": "^1.3.0",
     "react-native-svg": "^12.1.0",
+    "react-native-swiper": "^1.6.0",
+    "react-native-swiper-flatlist": "^2.0.6",
     "react-native-switch": "^2.0.0",
     "react-native-vector-icons": "^7.1.0",
     "typescript": "^4.0.2"
