@@ -7,6 +7,8 @@ export const USER_NAME = "user_name";
 export const USER_PASSWORD = "user_password";
 export const IS_REMEMBERED = "is_remembered";
 
+//check firts time install
+export const FIRST_TIME = "first_time";
 
 import { cloneDeep as _cloneDeep } from 'lodash';
 
@@ -142,7 +144,7 @@ export const setUserPassWord = async (userPassWord) => {
   }
 };
 
-export const getUserPassWord = async () => {   
+export const getUserPassWord = async () => {
   try {     
     const value = await AsyncStorage.getItem(USER_PASSWORD); 
 
@@ -167,4 +169,22 @@ export const removeRememberMe = async() => {
 };
 
 
+export const getCheckFirstTime = async () => {
+  try {     
+    const value = await AsyncStorage.getItem(FIRST_TIME); 
 
+    if (value !== null) {       
+      return value
+    }   
+  } 
+  catch (error) {   
+    console.log(error);
+  }
+};
+export const setCheckFirstTime = async (check) => {
+  try {
+    await AsyncStorage.setItem(FIRST_TIME, check);
+  } catch (error) {
+    console.log(error);
+  }
+};

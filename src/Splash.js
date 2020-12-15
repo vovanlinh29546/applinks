@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Animated, Image, Dimensions } from 'react-native'
 import logo from '../images/logo.png';
-
+import {
+getCheckFirstTime
+} from "./auth";
 export default class Splash extends Component {
     constructor(props) {
         super(props)
-        setTimeout(() => {
-            this.props.navigation.navigate('Đăng nhập')
-        }, 3000);
+        // setTimeout(() => {
+        //     this.props.navigation.navigate('Hướng dẫn')
+        // }, 3000);
 
     }
     state = {
@@ -16,9 +18,27 @@ export default class Splash extends Component {
 
     }
 
-    componentDidMount() {
+    componentDidMount = async()=> {
         this._fadeAnimation()
         this._TransitionAnimation()
+        try {
+             const check = await getCheckFirstTime();
+            
+            if(typeof check == "undefined"){
+            setTimeout(() => {
+            this.props.navigation.navigate('Hướng dẫn')
+                            }, 2500);
+            }
+            else{
+            setTimeout(() => {
+            this.props.navigation.navigate('Đăng nhập')
+                            }, 2500);
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+       
     }
 
     _fadeAnimation() {
@@ -52,7 +72,7 @@ export default class Splash extends Component {
                         opacity: this.state.animatedValue,
                         top: this.state.animatedYValue,
                 }]}>
-                <Text style={styles.text} >LINKS</Text>
+                <Text style={styles.text} >SmartLinks</Text>
                 </Animated.View>
             </View>
         )
