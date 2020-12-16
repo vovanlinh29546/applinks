@@ -1,5 +1,5 @@
 
-import React, { useState,useRef  } from 'react';
+import React, { useState,useRef ,useEffect } from 'react';
 import { StyleSheet, Text, View, Button,Image,Dimensions,TouchableOpacity,Alert } from 'react-native';
 //scroll horizon
 import Swiper from 'react-native-swiper';
@@ -12,7 +12,15 @@ import {
 setCheckFirstTime
 } from "./auth";
 export default function App({ navigation, route }) {
-     const swiper = React.useRef(null);
+
+ //nếu  truyền đối số thứ 2 là mảng rỗng thì chỉ gọi 1 lần như didmount
+ // nếu return thì sẽ là unmount
+ // nếu khi đối số counter thay đổi thì useeffect sẽ gọi lại như didupdate 
+//   useEffect(() => {
+//  console.log('Counter has changed!')
+//  return () => setCounter(0)
+// }, [counter])
+  const swiper = React.useRef(null);
 	const [data, setdata] = useState([
             {
                 image: image1,

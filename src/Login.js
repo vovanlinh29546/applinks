@@ -72,7 +72,7 @@ export default class LoginScreen extends React.Component {
     firebaseConfig.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
         // If you need to do anything with the user, do it here
-        this.props.navigation.navigate('Trang chủ', {
+        this.props.navigation.navigate('Drawer', {
           email: email,
 
         })

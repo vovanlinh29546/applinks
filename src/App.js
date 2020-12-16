@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button,TouchableOpacity,Dimensions,Text,View,SafeAreaView,Image  } from 'react-native';
-import AntDesign from "react-native-vector-icons/AntDesign";
+
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,6 +18,7 @@ import Weather from "./Weather.js";
 import Tutorial from "./tutorial.js";
 import CRRooms from "./Createroom.js";
 import CRDevices from "./Createdevices.js";
+
 import firebaseConfig from '../firebase/firebase.js';
 import {
   createDrawerNavigator,
@@ -25,10 +26,33 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import { DrawerActions } from '@react-navigation/native';
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 console.disableYellowBox = true;//tat thông báo màu vàng
+
+// function CustomHeader(title,navigation) {
+//   return(
+//     <View>
+//     <TouchableOpacity style={{
+//          flexDirection:'row',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//         alignContent: 'center',
+//         paddingRight:10,
+//       }}
+//        onPress={() => {
+//           navigation.dispatch(DrawerActions.openDrawer());
+//        }}
+//        >
+//               <AntDesign name={'setting'} size={35} color={ 'white'}/>
+//     </TouchableOpacity>
+//     </View>
+      
+
+//   );
+// }
+
 
 function CustomDrawerContent(props) {
   return (
@@ -60,7 +84,8 @@ function MyDrawer() {
     itemStyle: { marginVertical: 5 },
   }}
     drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Trang chủ" component={MainStack} />
+          <Drawer.Screen name="Trang chủ" component={Myhome}  
+         />
         <Drawer.Screen name="Room" component={CRRooms} options={{ title: 'Thêm phòng ' }} />
         <Drawer.Screen name="Devices" component={CRDevices} options={{ title: 'Thêm thiết bị ' }} />
     </Drawer.Navigator>
@@ -74,7 +99,7 @@ const MainStack = () => {
         screenOptions={{
           headerStyle: {
             backgroundColor: '#444444',
-            // alignItems: 'center'
+            height:50
 
           },
           headerTintColor: '#fff',
@@ -85,28 +110,19 @@ const MainStack = () => {
       >
         <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
         <Stack.Screen name="Đăng nhập" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Drawer" component={MyDrawer} 
+        // options={({ navigation,title })=>
+        // (
+        //   {headerLeft: null,
+        //   headerTitle:false,
+        //    headerRight: () => 
+        //     CustomHeader("ádsd",navigation)
+        // })
+        // } 
+        options={{ headerShown: false }}
+        
+        />
         <Stack.Screen name="Đăng ký" component={Register}  />
-        <Stack.Screen name="Trang chủ" component={Myhome}  
-        options={({ navigation })=>
-        (
-          {headerLeft: null,
-           headerRight: () => <TouchableOpacity style={{
-         flexDirection:'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingRight:10,
-      }}
-       onPress={() => {
-navigation.dispatch(DrawerActions.openDrawer());
-
-       }}
-       >
-              <AntDesign name={'setting'} size={35} color={ 'white'}/>
-    </TouchableOpacity> 
-        })
-        }
-         />
         <Stack.Screen name="Phòng khách" component={DevicesMan} />
         <Stack.Screen name="Phòng ngủ" component={Bedroom} />
         <Stack.Screen name="Phòng bếp" component={Kitchenroom} />
@@ -126,7 +142,7 @@ function App() {
 
     <NavigationContainer>
      
-     <MyDrawer/>
+     <MainStack/>
 
     </NavigationContainer>
 

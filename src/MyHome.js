@@ -20,6 +20,8 @@ import { color } from 'react-native-reanimated';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import Swiper from 'react-native-swiper'
 import Voice from '@react-native-community/voice';
+//custom
+import CustomHeader from "./CustomHeader.js";
 export default class Splash extends Component {
     constructor(props) {
         super(props)
@@ -411,6 +413,7 @@ this.setState({changecolor:false})  }
         
         return (
             <View style={styles.container}>
+            <CustomHeader title="Trang chủ" navigation={this.props.navigation} ishome={true} setting={true}/>
                 <ImageBackground source={require('../images/Myhouse.jpg')} style={styles.image}>
                 <View style={styles.header}>
                     {this.goodMorning()}

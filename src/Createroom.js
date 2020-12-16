@@ -4,11 +4,13 @@ import { StyleSheet, Text, View, Button,Image,Dimensions,TouchableOpacity } from
 //scroll horizon
 import Swiper from 'react-native-swiper';
 //khai bao imga hướng dẫn
-
+//custom
+import CustomHeader from "./CustomHeader.js";
 export default function App({ navigation, route }) {
 
 	return (
 		<View style={styles.container}>
+		<CustomHeader title="Thêm phòng" navigation={navigation} ishome={false} setting={false}/>
 			<Text> tạo phòng</Text>
 		</View>
 	);
@@ -18,9 +20,9 @@ const { height } = Dimensions.get('window')
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF'
+        backgroundColor: '#fff',
+        borderRadius: width * 3.6 / 187.5,
+        alignContent: 'center',
 	},
 	stimage: {
 width:width,
